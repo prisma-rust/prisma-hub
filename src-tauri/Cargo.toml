@@ -33,3 +33,10 @@ lto = true           # 链接期优化
 codegen-units = 1    # 更好优化
 panic = "abort"      # 去掉 unwind 表
 strip = true         # 去符号
+
+# Third-party dependencies don't need debuginfo in dev builds (saves tens of GB of target/).
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
